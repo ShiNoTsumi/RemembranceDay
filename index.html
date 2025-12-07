@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grave of the Unkwown Soldier</title>
+
+  <!--link to a-frame library - CDN -->
+
+  <script src="//aframe.io/releases/1.1.0/aframe.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
+
+  <!--extras library-->
+
+  <!--library for events setting on panels-->
+
+  <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+
+  <!--environment component-->
+
+  <script src="//unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
+  
+  <script>
+
+    // Functions to activate lights by hovering over objects.
+
+    AFRAME.registerComponent('light-plaque', {
+      init: function () {
+        var el = this.el;
+        var lightEl = document.querySelector('#plaque-light');
+
+        el.addEventListener('mouseenter', function () {
+          lightEl.setAttribute('light', 'intensity', 1.5);
+        });
+
+        el.addEventListener('mouseleave', function () {
+          lightEl.setAttribute('light', 'intensity', 0);
+        });
+      }
+    });
+
+    AFRAME.registerComponent('light-wreath', {
+      init: function () {
+        var el = this.el;
+        var lightEl = document.querySelector('#wreath-light');
+
+        el.addEventListener('mouseenter', function () {
+          lightEl.setAttribute('light', 'intensity', 1.5);
+        });
+
+        el.addEventListener('mouseleave', function () {
+          lightEl.setAttribute('light', 'intensity', 0);
+        });
+      }
+    });
+
+    AFRAME.registerComponent('light-helmet', {
+      init: function () {
+        var el = this.el;
+        var lightEl = document.querySelector('#helmet-light');
+
+        el.addEventListener('mouseenter', function () {
+          lightEl.setAttribute('light', 'intensity', 1.5);
+        });
+
+        el.addEventListener('mouseleave', function () {
+          lightEl.setAttribute('light', 'intensity', 0);
+        });
+      }
+    });
+
+    AFRAME.registerComponent('light-branch1', {
+      init: function () {
+        var el = this.el;
+        var lightEl = document.querySelector('#branch1-light');
+
+        el.addEventListener('mouseenter', function () {
+          lightEl.setAttribute('light', 'intensity', 1.5);
+        });
+
+        el.addEventListener('mouseleave', function () {
+          lightEl.setAttribute('light', 'intensity', 0);
+        });
+      }
+    });
+
+     AFRAME.registerComponent('light-branch2', {
+      init: function () {
+        var el = this.el;
+        var lightEl = document.querySelector('#branch2-light');
+
+        el.addEventListener('mouseenter', function () {
+          lightEl.setAttribute('light', 'intensity', 1.5);
+        });
+
+        el.addEventListener('mouseleave', function () {
+          lightEl.setAttribute('light', 'intensity', 0);
+        });
+      }
+    });
+
+    AFRAME.registerComponent('light-sword', {
+      init: function () {
+        var el = this.el;
+        var lightEl = document.querySelector('#sword-light');
+
+        el.addEventListener('mouseenter', function () {
+          lightEl.setAttribute('light', 'intensity', 1.5);
+        });
+
+        el.addEventListener('mouseleave', function () {
+          lightEl.setAttribute('light', 'intensity', 0);
+        });
+      }
+    });
+
+  </script>
+
+</head>
+
+<body>
+
+  <!--all 3D elements go inside of a scene tag-->
+  
+  <a-scene light="defaultLightsEnabled: false">
+
+    <!---------------------- PRELOADING FILES ---------------->
+
+    <a-assets>
+
+      <!----3D Models ---->
+
+      <a-asset-item id="ground" src="Assets/Models/GroundPlane.gltf"></a-asset-item>
+
+      <a-asset-item id="groundMesh" src="Assets/Models/GroundMesh.gltf"></a-asset-item>
+
+      <a-asset-item id="branch1" src="Assets/Models/Branch1.gltf"></a-asset-item>
+
+      <a-asset-item id="branch2" src="Assets/Models/Branch2.gltf"></a-asset-item>
+
+      <a-asset-item id="evironment" src="Assets/Models/Environment.gltf"></a-asset-item>
+
+      <a-asset-item id="helmet" src="Assets/Models/Helmet.gltf"></a-asset-item>
+
+      <a-asset-item id="plaque" src="Assets/Models/Plaque.gltf"></a-asset-item>
+
+      <a-asset-item id="sarcophagus" src="Assets/Models/Sarcophagus.gltf"></a-asset-item>
+
+      <a-asset-item id="sword" src="Assets/Models/Sword.gltf"></a-asset-item>
+
+      <a-asset-item id="wreath" src="Assets/Models/Wreath.gltf"></a-asset-item>
+
+      <!-- audio -->
+
+      <audio id="click" src="Assets/Audio/Click.mp3"></audio>
+
+      <audio id="memorial" src="Assets/Audio/Music.mp3"></audio>
+
+      <!-- images -->
+
+      <img id="plaqueposter" src="Assets/Images/PlaquePoster.jpg">
+
+      <img id="branch1poster" src="Assets/Images/Branch1Poster.jpg">
+
+      <img id="branch2poster" src="Assets/Images/Branch2Poster.jpg">
+
+      <img id="swordposter" src="Assets/Images/SwordPoster.jpg">
+
+      <img id="helmetposter" src="Assets/Images/HelmetPoster.jpg">
+
+      <img id="wreathposter" src="Assets/Images/WreathPoster.jpg">
+
+    </a-assets>
+
+    <!---------------------- BUILDING THE SCENE -------------->
+
+    <!-- Ground -->
+
+    <a-entity gltf-model="#ground" position="0 0 0" shadow="receive:true" scale=" 1.1 1.1 1.1"></a-entity>
+
+    <a-entity gltf-model="#groundMesh" nav-mesh position="0 0 0" visible="false" scale=" 0.94 0.94 0.94"></a-entity>
+
+    <!-- Environment -->
+
+    <a-entity gltf-model="#evironment"></a-entity>
+
+    <!-- Items -->
+
+    <a-entity gltf-model="#branch1" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" light-branch1
+    event-set__click="_target:#posterFrame2; position: 0.4 1.665 -0.472"></a-entity>
+
+    <a-entity gltf-model="#branch2" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" light-branch2
+    event-set__click="_target:#posterFrame3; position: -0.708 1.665 -0.508"></a-entity>
+
+    <a-entity gltf-model="#sword" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" light-sword
+    event-set__click="_target:#posterFrame4; position: -0.016 1.665 -0.447"></a-entity>
+
+    <a-entity gltf-model="#helmet" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" light-helmet
+    event-set__click="_target:#posterFrame5; position: -0.406 1.665 -0.496"></a-entity>
+
+    <a-entity gltf-model="#sarcophagus" position="0 0 0" sound="src:#memorial; autoplay:true; loop:true"></a-entity>
+
+    <a-entity gltf-model="#wreath" position="-1.417 0.762 1.287" rotation="22.840 0.740 -18.870"
+    event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1"
+    animation__1="property:position; to: 0 0 0; dir:alternate; dur: 2000; startEvents:click;"
+    animation__2="property:rotation; to: 0 0 0; dir:alternate; dur: 2000; startEvents:click; "
+    light-wreath
+    event-set__click="_target:#posterFrame6; position: -1.174 1.393 2.342"></a-entity>
+
+    <a-entity gltf-model="#plaque" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" light-plaque
+    event-set__click="_target:#posterFrame1; position: -0.050 1.394 1.8"></a-entity>
+
+    <!-- Posters -->
+
+    <a-box id="posterFrame1" height="1.5" width="1" position="-0.050 -0.690 1.596"
+    material="src:#plaqueposter; shader: flat;"
+    depth="0.01" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" event-set__click="position:-0.050 -0.690 1.596"></a-box>
+
+    <a-box id="posterFrame2" height="1.5" width="1" position="-0.050 -0.690 1.596"
+    material="src:#branch1poster; shader: flat;"
+    depth="0.01" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" event-set__click="position:-0.050 -0.690 1.596"></a-box>
+
+    <a-box id="posterFrame3" height="1.5" width="1" position="-0.050 -0.690 1.596"
+    material="src:#branch2poster; shader: flat;"
+    depth="0.01" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" event-set__click="position:-0.050 -0.690 1.596"></a-box>
+
+    <a-box id="posterFrame4" height="1.5" width="1" position="-0.050 -0.690 1.596"
+    material="src:#swordposter; shader: flat;"
+    depth="0.01" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" event-set__click="position:-0.050 -0.690 1.596"></a-box>
+
+    <a-box id="posterFrame5" height="1.5" width="1" position="-0.050 -0.690 1.596"
+    material="src:#helmetposter; shader: flat;"
+    depth="0.01" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" event-set__click="position:-0.050 -0.690 1.596"></a-box>
+
+    <a-box id="posterFrame6" height="1.5" width="1" position="-0.050 -0.690 1.596"
+    material="src:#wreathposter; shader: flat;"
+    rotation="0 29 0"
+    depth="0.01" event-set__mouseenter="_target:#ring; color: #39FF14; scale:1.5 1.5 1.5"
+    event-set__mouseleave="_target:#ring; color: red; scale:1 1 1" event-set__click="position:-0.050 -0.690 1.596"></a-box> 
+
+    <!-- Environment -->
+
+    <a-entity environment="preset:starry"></a-entity>
+
+    <!----------------------Lights----------------->
+
+    <a-entity id="ambient" light="type:ambient; intensity: 0.8; decay: 2; distance:50; color:#F0F8FF;
+    " position="0.6 2.2 -0.3"></a-entity>
+
+    <a-entity id="reflection" light="type: spot; intensity: 0.2; castShadow: true; decay: 5.27; distance: 39.63; color: #dcfafe; angle: 100; penumbra: 0.41; shadowBias: 0.34; shadowCameraBottom: -5.55; shadowRadius: 1.57" position="-0.00433 0.78457 -0.00486" rotation="-90 0 0" scale="1.25 0.26 1.25" visible=""></a-entity>
+
+    <a-entity id="plaque-light" light="type: spot; intensity: 0; castShadow: true; decay: 2.92; distance: 48.03; color: white target:#plaque; penumbra: 0.13; angle: 51.04" position="0 0.9 2.13405" rotation="-87.357 0 0"></a-entity>
+
+    <a-entity id="wreath-light"
+    light="type: spot; intensity: 0; castShadow: true; decay: 2.92; distance: 48.03; color: white target:#plaque; penumbra: 1; angle: 22.96"
+     position="-1.26292 1.79127 2.24842" rotation="-87.357 0 0"></a-entity>
+
+    <a-entity id="helmet-light"
+    light="type: spot; intensity: 0; castShadow: true; decay: 2.92; distance: 48.03; color: white target:#plaque; penumbra: 1; angle: 12.69"
+    position="-0.38066 1.79127 -0.08236" rotation="-87.357 0 0"></a-entity>
+
+    <a-entity id="branch1-light" light="type: spot; intensity: 0; castShadow: true; decay: 2.92; distance: 48.03; color: white target:#plaque; penumbra: 1; angle: 19.61" position="0.51016 1.79127 0.90065" rotation="-57.547000000000004 0 0" scale="0.25 0.85 0.73001"></a-entity>
+
+    <a-entity id="branch2-light" light="type: spot; intensity: 0; castShadow: true; decay: 2.92; distance: 48.03; color: white target:#plaque; penumbra: 1; angle: 22.96" position="-1.05317 1.79127 -0.30413" rotation="-65.40084048300294 -85.15929004808939 -13.24334647665385" scale="0.25 0.87001 0.73001"></a-entity>
+
+    <a-entity id="sword-light" light="type: spot; intensity: 0; castShadow: true; decay: 10.68; distance: 51.25; color: white target:#plaque; penumbra: 1; angle: 16.81" position="0.00391 1.79127 0.01152" rotation="-90 -85.15929004808939 -13.24334647665385" scale="0.04001 0.20001 0.98001"></a-entity>
+
+    <!----------------------camera rig ------------>
+
+    <a-entity id="rig" position="0 0 5" movement-controls="constrainToNavMesh:true">
+
+      <!--add a camera-->
+
+      <a-entity camera position="0 1.4 0" look-controls="">
+
+        <a-cursor id="ring" color="red" opacity="0.7" sound="on:click; src:#click"></a-cursor>
+
+      </a-entity>
+
+    </a-entity>
+
+  </a-scene>
+
+</body>
+
+</html>
